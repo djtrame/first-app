@@ -29,11 +29,15 @@ import { RouterModule } from '@angular/router';
       <section class="content">
         <router-outlet></router-outlet>
       </section>
+      &nbsp;
+      <a [routerLink]="['student-grid']"> student-grid </a>
+      <section class="content">
+        <router-outlet></router-outlet>
+      </section>
     </main>
   `,
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   title = 'homes';
-  //todo add a 2nd page and attempt to get JSON info from my meal service
 }
