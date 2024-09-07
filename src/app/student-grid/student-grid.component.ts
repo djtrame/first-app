@@ -3,7 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import { Student } from '../student';
 import { StudentService } from '../student.service';
 import { AgGridAngular } from 'ag-grid-angular';
-import { CellValueChangedEvent, ColDef } from 'ag-grid-community';
+import {
+  CellValueChangedEvent,
+  RowValueChangedEvent,
+  ColDef,
+} from 'ag-grid-community';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-quartz.css';
 //import { CellValueChangedEvent } from '@ag-grid-community/core';
@@ -26,12 +30,12 @@ import { ClientSideRowModelModule } from '@ag-grid-community/client-side-row-mod
       [paginationPageSize]="paginationPageSize"
       [paginationPageSizeSelector]="paginationPageSizeSelector"
       (cellValueChanged)="onCellValueChanged($event)"
+      (rowValueChanged)="onRowValueChanged($event)"
     />
   `,
   styleUrl: './student-grid.component.css',
 })
 export class StudentGridComponent implements OnInit {
-  //(cellValueChanged)="onCellValueChanged($event)"
   route: ActivatedRoute = inject(ActivatedRoute);
   students: Student[];
   pagination = true;
@@ -70,5 +74,16 @@ export class StudentGridComponent implements OnInit {
     console.log(
       'onCellValueChanged: ' + event.colDef.field + ' = ' + event.newValue
     );
+  }
+
+  onRowValueChanged(event: RowValueChangedEvent) {
+    const data = event.data;
+    console.log(
+      'onRowValueChanged: (' + data.student_id + ', ' + data.name + ')'
+    );
+
+    this.studentService.updateStudents(data).subscribe((response) => {
+      console.log('Data updated:', response);
+    });
   }
 }
