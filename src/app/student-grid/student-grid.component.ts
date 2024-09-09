@@ -7,6 +7,7 @@ import {
   CellValueChangedEvent,
   RowValueChangedEvent,
   ColDef,
+  RowSelectedEvent,
 } from 'ag-grid-community';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-quartz.css';
@@ -19,6 +20,7 @@ import { ClientSideRowModelModule } from '@ag-grid-community/client-side-row-mod
   imports: [AgGridAngular],
   template: `
     <p>student-grid works!</p>
+    <button click="addRow()">Add Row</button>
     <ag-grid-angular
       class="ag-theme-quartz-dark"
       style="height: 500px"
@@ -31,6 +33,7 @@ import { ClientSideRowModelModule } from '@ag-grid-community/client-side-row-mod
       [paginationPageSizeSelector]="paginationPageSizeSelector"
       (cellValueChanged)="onCellValueChanged($event)"
       (rowValueChanged)="onRowValueChanged($event)"
+      (rowSelected)="onRowSelected($event)"
     />
   `,
   styleUrl: './student-grid.component.css',
@@ -56,8 +59,9 @@ export class StudentGridComponent implements OnInit {
       field: 'student_id',
       checkboxSelection: true,
       editable: false,
+      hide: true,
     },
-    { field: 'name' },
+    { field: 'name', checkboxSelection: true },
   ];
 
   constructor(private studentService: StudentService) {}
@@ -85,5 +89,19 @@ export class StudentGridComponent implements OnInit {
     this.studentService.updateStudents(data).subscribe((response) => {
       console.log('Data updated:', response);
     });
+  }
+
+  onRowSelected(event: RowSelectedEvent) {
+    let rowNode = event.node;
+
+    if (rowNode.isSelected()) {
+      console.log(
+        'onRowSelected: (' +
+          rowNode.data.student_id +
+          ', ' +
+          rowNode.data.name +
+          ')'
+      );
+    }
   }
 }

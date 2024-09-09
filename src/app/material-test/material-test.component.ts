@@ -35,6 +35,33 @@ import 'ag-grid-community/styles/ag-theme-quartz.css';
       </mat-form-field>
     </form>
     <hr />
+    <form (ngSubmit)="addRow()">
+      <input
+        [(ngModel)]="newRow.carMake"
+        name="make"
+        placeholder="Make"
+        required
+      />
+      <input
+        [(ngModel)]="newRow.model"
+        name="model"
+        placeholder="Model"
+        required
+      />
+      <input
+        [(ngModel)]="newRow.price"
+        name="price"
+        placeholder="Price"
+        required
+      />
+      <input
+        [(ngModel)]="newRow.electric"
+        name="electric"
+        placeholder="Electric"
+        required
+      />
+      <button type="submit">Add Row</button>
+    </form>
     <ag-grid-angular
       class="ag-theme-quartz-dark"
       style="height: 500px"
@@ -59,6 +86,7 @@ export class MaterialTestComponent {
   pagination = true;
   paginationPageSize = 10;
   paginationPageSizeSelector = [10, 20];
+  newRow = { carMake: '', model: '', price: null, electric: null };
 
   // Row Data: The data to be displayed.
   rowData = [
@@ -79,9 +107,13 @@ export class MaterialTestComponent {
     { field: 'model' },
     {
       field: 'price',
-      headerName: 'MSRP',
-      valueFormatter: (p) => '$' + p.value.toLocaleString(), //you can also give it your own explicit header name
+      headerName: 'MSRP', //you can also give it your own explicit header name
+      valueFormatter: (p) => '$' + p.value.toLocaleString(),
     },
     { field: 'electric' },
   ];
+
+  addRow() {
+    console.log('addRow button clicked!');
+  }
 }

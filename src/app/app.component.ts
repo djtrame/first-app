@@ -21,19 +21,22 @@ import { RouterModule } from '@angular/router';
       </a>
       &nbsp;
       <a [routerLink]="['test-rest-call', 5]"> test-rest-call </a>
-      <section class="content">
-        <router-outlet></router-outlet>
-      </section>
+      <!-- <section class="content"> -->
+      <router-outlet></router-outlet>
+      <!-- </section> -->
       &nbsp;
       <a [routerLink]="['material-test']"> material-test </a>
-      <section class="content">
-        <router-outlet></router-outlet>
-      </section>
+      <!-- <section class="content"> -->
+      <router-outlet></router-outlet>
+      <!-- </section> -->
       &nbsp;
       <a [routerLink]="['student-grid']"> student-grid </a>
-      <section class="content">
-        <router-outlet></router-outlet>
-      </section>
+      <!-- <section class="content"> -->
+      <router-outlet></router-outlet>
+      <!-- </section> -->
+      &nbsp;
+      <a [routerLink]="['student-courses-grid']"> student-courses-grid </a>
+      <router-outlet></router-outlet>
     </main>
   `,
   styleUrls: ['./app.component.css'],

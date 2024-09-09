@@ -4,6 +4,7 @@ import { DetailsComponent } from './details/details.component';
 import { TestRestCallComponent } from './test-rest-call/test-rest-call.component';
 import { MaterialTestComponent } from './material-test/material-test.component';
 import { StudentGridComponent } from './student-grid/student-grid.component';
+import { StudentCoursesGridComponent } from './student-courses-grid/student-courses-grid.component';
 
 const routeConfig: Routes = [
   {
@@ -35,6 +36,11 @@ const routeConfig: Routes = [
     path: 'student-grid',
     component: StudentGridComponent,
     title: 'Student Grid',
+  },
+  {
+    path: 'student-courses-grid',
+    component: StudentCoursesGridComponent,
+    title: 'Student Courses Grid',
   },
 ];
 
