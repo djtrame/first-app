@@ -15,7 +15,11 @@ export class StudentService {
     return this.http.get<Student[]>(this.url);
   }
 
-  updateStudents(data: Student): Observable<any> {
+  updateStudent(data: Student): Observable<any> {
     return this.http.put(this.url + '/' + data.student_id, data);
+  }
+
+  createStudent(data: Student): Observable<any> {
+    return this.http.post(this.url, data);
   }
 }

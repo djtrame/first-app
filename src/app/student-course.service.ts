@@ -11,7 +11,7 @@ export class StudentCourseService {
 
   url = 'http://localhost:8080/student-courses';
 
-  getStudents(): Observable<StudentCourse[]> {
+  getStudentCourses(): Observable<StudentCourse[]> {
     return this.http.get<StudentCourse[]>(this.url);
   }
 
